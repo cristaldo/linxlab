@@ -24,7 +24,9 @@ chmod +x start.sh
 ```
 
 ### ** Para remover os pacotes **
+```
 sh start.sh remove
+```
 
 Após a execução do script start.sh, o playbook poderá ser executado:
 
