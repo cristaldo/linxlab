@@ -1,0 +1,14 @@
+---
+- name: Install Nginx
+  yum: name=nginx state=present
+
+- name: Create nginx config file
+  template: src=default.conf dest=/etc/nginx/conf.d/default.conf
+  notify: restart nginx
+
+- name: Firewalld rules
+  firewalld: port={{ nginx_port}}/tcp permanent=true state=enabled immediate=yes
+  ignore_erros: yes
+
+- name: http service
+  service: name=nginx state=started enabled=yes
