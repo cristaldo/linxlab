@@ -4,7 +4,7 @@
   remote_user: root
 
   roles:
-    - deps
+    - common
     - repos
     - nodeJs
     - nginx

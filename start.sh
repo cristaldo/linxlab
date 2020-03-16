@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script para instalar ou remover remover o ansible
+# Script para instalar ou remover o ansible
 
 # Conferindo se o SO é CentOS
 if [ -f /etc/redhat-release ]; then
