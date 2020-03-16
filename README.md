@@ -31,6 +31,6 @@ sh start.sh remove
 Após a execução do script start.sh, o playbook poderá ser executado:
 
 ```
-ansible-playbook init.yaml
+ansible-playbook site.yaml
 ```
 
