@@ -5,12 +5,18 @@
   - name: Install selinux
     yum: name=libselinux-python state=latest
 
+  - name: Install selinux semanage
+    yum: name=libsemanage-python state=latest
+
   - name: Install Epel
     yum: name=epel-release state=latest
 
   - name: Firewalld service
     service: name=firewalld state=started enabled=yes
 
-  - name: Firewalld rules
+  - name: Firewalld rules https
+    firewalld: service=https permanent=true state=enabled immediate=yes
+
+  - name: Firewalld rules http
     firewalld: service=http permanent=true state=enabled immediate=yes
     notify: restart firewalld
