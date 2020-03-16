@@ -1,10 +1,10 @@
 ---
-- name: Instalar Repos, nodeJs, Nginx
+- name: Instalação e configuração das roles common, repos, nodeJs e nginx
   hosts: webservers
   remote_user: root
 
   roles:
-#    - common
-#    - repos
+    - common
+    - repos
     - nodeJs
     - nginx
