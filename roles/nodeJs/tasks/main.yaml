@@ -13,7 +13,9 @@
   - name: Install Express
     npm:
       name: express
-      global: yes
+    args:
+      path: /srv/www/nodejs
+      global: no
 
   - name: Install PM2
     npm:
@@ -41,10 +43,10 @@
     args:
       chdir: /srv/www/nodejs
 
-#  - name: Start App Linx
-#    shell: pm2 startup cluster.js
-#    args:
-#      chdir: /srv/www/nodejs
+  - name: Systemd App Linx
+    shell: pm2 startup 
+    args:
+      chdir: /srv/www/nodejs
 
   - name: Service PM2 Cluster
     service: name=pm2-root.service state=started enabled=yes
