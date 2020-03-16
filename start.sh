@@ -25,7 +25,7 @@ print_line
 echo  "               Ansible Instaldo"
 echo  " Agora execute o comando abaixo:"
 echo  " "
-echo  " ansible-playbook init.yaml"
+echo  " ansible-playbook site.yaml"
 print_line
 
 }
