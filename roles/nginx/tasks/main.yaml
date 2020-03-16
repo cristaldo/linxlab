@@ -6,10 +6,6 @@
     template: src=nginx.conf dest=/etc/nginx/nginx.conf
     notify: restart nginx
 
-#  - name: Firewalld rules
-#    firewalld: port={{ nginx_port}}/tcp permanent=true state=enabled immediate=yes
-#    ignore_erros: yes
-
   - name: http service
     service: name=nginx state=started enabled=yes
 
