@@ -1,0 +1,51 @@
+---
+  - name: Install NodeJS
+    yum: name=nodejs state=present
+
+  - name: Create directory for nodeJS Linx App
+    file: path=/srv/www state=directory
+
+  - name: install NPM
+    shell: npm i
+      args:
+      chdir: /srv/www
+
+  - name: Install Express
+    npm:
+      name: express
+      global: yes
+
+  - name: Install PM2
+    npm:
+      name: pm2
+      global: yes
+
+#  - name: Copy TLS key
+#    copy: src=files/nginx.key dest={{ key_file }} owner=root mode=0600
+
+#  - name: Copy TLS certificate
+#    copy: src=files/nginx.crt dest={{ cert_file }} owner=root mode=0600
+
+#  - name: Copy Nginx config file
+#    template: src=templates/nginx.conf.j2 dest={{ conf_file }}
+
+
+  - name: Create app config file
+    template: src=cluster.js dest=/srv/www/cluster.js
+
+  - name: Create app config file
+    template: src=node.js dest=/srv/www/cluster.js
+
+  - name: Start App Linx
+      shell: pm2 start cluster.js
+      args:
+        chdir: /srv/www
+
+  - name: Start App Linx
+      shell: pm2 startup cluster.js
+      args:
+        chdir: /srv/www
+
+  - name: Service PM2 Cluster
+    service: name=pm2-root.service state=started enabled=yes
+

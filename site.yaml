@@ -1,8 +1,7 @@
 ---
 - name: Instalar Repos, nodeJs, Nginx
-  hosts: webserver
+  hosts: webservers
   remote_user: root
-  sudo: no
 
   roles:
     - deps
