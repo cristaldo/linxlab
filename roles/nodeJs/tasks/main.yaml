@@ -3,12 +3,12 @@
     yum: name=nodejs state=present
 
   - name: Create directory for nodeJS Linx App
-    file: path=/srv/www state=directory
+    file: path=/srv/www/nodejs state=directory
 
   - name: install NPM
     shell: npm i
-      args:
-      chdir: /srv/www
+    args:
+      chdir: /srv/www/nodejs
 
   - name: Install Express
     npm:
@@ -30,21 +30,21 @@
 #    template: src=templates/nginx.conf.j2 dest={{ conf_file }}
 
 
-  - name: Create app config file
-    template: src=cluster.js dest=/srv/www/cluster.js
+  - name: Create app cluster config file
+    copy: src=cluster.js dest=/srv/www/nodejs/cluster.js
 
-  - name: Create app config file
-    template: src=node.js dest=/srv/www/cluster.js
-
-  - name: Start App Linx
-      shell: pm2 start cluster.js
-      args:
-        chdir: /srv/www
+  - name: Create app node config file
+    copy: src=node.js dest=/srv/www/nodejs/node.js
 
   - name: Start App Linx
-      shell: pm2 startup cluster.js
-      args:
-        chdir: /srv/www
+    shell: pm2 -f start cluster.js
+    args:
+      chdir: /srv/www/nodejs
+
+#  - name: Start App Linx
+#    shell: pm2 startup cluster.js
+#    args:
+#      chdir: /srv/www/nodejs
 
   - name: Service PM2 Cluster
     service: name=pm2-root.service state=started enabled=yes
