@@ -1,10 +1,11 @@
 ---
-- name: Instalação e configuração das roles common, repos, nodeJs e nginx
-  hosts: webservers
-  remote_user: root
+- name: Instalacao e configuração das roles common, repos, node,  nginx e messages
+  hosts: localhost
+  connection: local
 
   roles:
     - common
     - repos
     - nodeJs
     - nginx
+    - messages

@@ -24,39 +24,41 @@ echo "Inicio da instalação do EPEL e Ansible"
 print_line
 
   yum -y update && yum -y install epel-release && yum -y install ansible
-  cp -r $srcfile $dstfile
+#  cp -r $srcfile $dstfile
   echo "   Ansible Instalado"
 
-if [ -f $pubkey ]; then
+#*************** Playbook executado localmente sem SSH ***********
+#if [ -f $pubkey ]; then
 
-    grep -xFf $authkey $pubkey  > /dev/null 2>&1
-    result=$?
+#    grep -xFf $authkey $pubkey  > /dev/null 2>&1
+#    result=$?
 
-    	if  [ "$result" -ne 0 ]; then
-	print_line
-   	   echo "Já existe uma chave SSH..."
-           cat $pubkey >> $authkey
-   	   echo "Copiando Chave SSH no arquivo $authkey..."
-	   ssh-keyscan -t ecdsa localhost  >> $knownkey
-	print_line
+#    	if  [ "$result" -ne 0 ]; then
+#	print_line
+#   	   echo "Já existe uma chave SSH..."
+#           cat $pubkey >> $authkey
+#   	   echo "Copiando Chave SSH no arquivo $authkey..."
+#	   ssh-keyscan -t ecdsa localhost  >> $knownkey
+#	print_line
 
-        else
+#        else
 
-	print_line
-   	   echo "A chave publica já está autorizada"
-	   ssh-keyscan -t ecdsa localhost  >> $knownkey
-	print_line
-        fi
-else
-	print_line
-   	echo "Ainda não há uma chave SSH..."
-   	echo "Criando nova chave SSH..."
-           ssh-keygen -f $privkey -P ""
-        echo "Copiando chave SSH no arquivo $authkey..."
-           cat $pubkey >> $authkey
-	   ssh-keyscan -t ecdsa localhost  >> $knownkey
-	print_line
-fi
+#	print_line
+#   	   echo "A chave publica já está autorizada"
+#	   ssh-keyscan -t ecdsa localhost  >> $knownkey
+#	print_line
+#        fi
+#else
+#	print_line
+#   	echo "Ainda não há uma chave SSH..."
+#   	echo "Criando nova chave SSH..."
+#           ssh-keygen -f $privkey -P ""
+#        echo "Copiando chave SSH no arquivo $authkey..."
+#           cat $pubkey >> $authkey
+#	   ssh-keyscan -t ecdsa localhost  >> $knownkey
+#	print_line
+#fi
+#*************** Bloco necessario para configurar SSH ***********
 
 print_line
 echo  " "
