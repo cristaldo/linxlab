@@ -2,19 +2,18 @@ The Linx Lab Repository
 =========================
 
 ## 
-MÃ³dulo de Deploy de nodejs application + Nginx com Ansible
+Módulo de Deploy de nodejs application + Nginx com Ansible
 
-## ** Script de inicializaÃ§Ã£o **
+## ** Script de inicialização **
 
-O Script start.sh realiza a instalaÃ§Ã£o do Ansible no servidor que for executado, assim como cria o arquivo host
-com um apontamento a localhost.
+O Script start.sh realiza a instalação do Ansible no servidor que for executado, além de outras dependências.
 
-* Compatibilidade: CentOS / RedHat *
+* OS: CentOS / RedHat 
 * Utilizar o usuario: root
 
-# InstruÃ§Ãµes
+# Instruções de Instalação
 
-1) Aplicar permissÃ£o de execuÃ§Ã£o, se necessÃ¡rio:
+1) Aplicar permissão de execução, se necessário:
 ``` 
 chmod +x start.sh
 ```
@@ -29,11 +28,11 @@ chmod +x start.sh
 sh start.sh remove
 ```
 
-ApÃ³s a execuÃ§Ã£o do script start.sh, o playbook poderÃ¡ ser executado:
+Após a execução do script start.sh, o playbook poderá ser executado:
 
 ```
 ansible-playbook site.yaml
 ```
-Apos³ realizar o Deploy:
+Após realizar o Deploy:
 
-Acesse a aplicaÃ§Ã£o atravÃ©s da URL: httpIP_ADDRESS
+Acesse a aplicação nodeJS através da URL: http://ip_do_servidor
