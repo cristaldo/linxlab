@@ -10,7 +10,7 @@ O Script start.sh realiza a instalação do Ansible no servidor que for executad
 com um apontamento a localhost.
 
 * Compatibilidade: CentOS / RedHat *
-* Utilizar o usuário: root
+* Utilizar o usuario: root
 
 # Instruções
 
@@ -34,6 +34,6 @@ Após a execução do script start.sh, o playbook poderá ser executado:
 ```
 ansible-playbook site.yaml
 ```
-Após� realizar o Deploy:
+Apos� realizar o Deploy:
 
 Acesse a aplicação através da URL: httpIP_ADDRESS
