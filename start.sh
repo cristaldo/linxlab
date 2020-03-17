@@ -12,6 +12,7 @@ dstfile=/etc/ansible/
 privkey="/root/.ssh/id_rsa"
 pubkey="/root/.ssh/id_rsa.pub"
 authkey="/root/.ssh/authorized_keys"
+knownkey="/root/.ssh/known_hosts"
 
 function print_line () {
 echo "----------------------------------------------------------"
@@ -36,19 +37,24 @@ if [ -f $pubkey ]; then
    	   echo "Já existe uma chave SSH..."
            cat $pubkey >> $authkey
    	   echo "Copiando Chave SSH no arquivo $authkey..."
+	   ssh-keyscan -t ecdsa localhost  >> $knownkey
 	print_line
+
         else
+
 	print_line
-   	  echo "A chave publica já está autorizada"
+   	   echo "A chave publica já está autorizada"
+	   ssh-keyscan -t ecdsa localhost  >> $knownkey
 	print_line
         fi
 else
 	print_line
    	echo "Ainda não há uma chave SSH..."
    	echo "Criando nova chave SSH..."
-          ssh-keygen -f $privkey -P ""
+           ssh-keygen -f $privkey -P ""
         echo "Copiando chave SSH no arquivo $authkey..."
-          cat $pubkey >> $authkey
+           cat $pubkey >> $authkey
+	   ssh-keyscan -t ecdsa localhost  >> $knownkey
 	print_line
 fi
 
