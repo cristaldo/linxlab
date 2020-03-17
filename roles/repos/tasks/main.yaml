@@ -4,10 +4,3 @@
 
 - name: NodeJS GPG Key
   copy: src=NODESOURCE-GPG-SIGNING-KEY-EL dest=/etc/pki/rpm-gpg
-
-#- name: EPEL Repository
-#  copy: src=epel.repo dest=/etc/yum.repos.d/
-
-#- name: EPEL GPG Key
-#  copy: src=RPM-GPG-KEY-EPEL-7 dest=/etc/pki/rpm-gpg
-
