@@ -3,7 +3,7 @@
     yum: name=nginx state=present
 
   - name: Create nginx config file
-    template: src=nginx.conf dest=/etc/nginx/nginx.conf
+    copy: src=nginx.conf dest=/etc/nginx/nginx.conf
     notify: restart nginx
 
   - name: http service
