@@ -33,7 +33,7 @@
 
 
   - name: Create app config file
-    copy: src=apps.js dest=/srv/www/nodejs/app.js
+    copy: src=app.js dest=/srv/www/nodejs/app.js
 
   - name: Start App Linx
     shell: pm2 -f start app.js
