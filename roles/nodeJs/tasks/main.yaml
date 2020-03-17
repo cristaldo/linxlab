@@ -32,14 +32,11 @@
 #    template: src=templates/nginx.conf.j2 dest={{ conf_file }}
 
 
-  - name: Create app cluster config file
-    copy: src=cluster.js dest=/srv/www/nodejs/cluster.js
-
-  - name: Create app node config file
-    copy: src=node.js dest=/srv/www/nodejs/node.js
+  - name: Create app config file
+    copy: src=apps.js dest=/srv/www/nodejs/app.js
 
   - name: Start App Linx
-    shell: pm2 -f start cluster.js
+    shell: pm2 -f start app.js
     args:
       chdir: /srv/www/nodejs
 
