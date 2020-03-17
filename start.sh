@@ -1,12 +1,17 @@
 #!/bin/bash
 
 # Script para instalar ou remover o ansible
-
 # Conferindo se o SO é CentOS
+# @2020 rafael@rafaelcristaldo.com.br
+
 if [ -f /etc/redhat-release ]; then
 
+# Variaveis
 srcfile=src/hosts
 dstfile=/etc/ansible/
+privkey="/root/.ssh/id_rsa"
+pubkey="/root/.ssh/id_rsa.pub"
+authkey="/root/.ssh/authorized_keys"
 
 function print_line () {
 echo "----------------------------------------------------------"
@@ -20,6 +25,32 @@ print_line
   yum -y update && yum -y install epel-release && yum -y install ansible
   cp -r $srcfile $dstfile
   echo "   Ansible Instalado"
+
+if [ -f $pubkey ]; then
+
+    grep -xFf $authkey $pubkey  > /dev/null 2>&1
+    result=$?
+
+    	if  [ "$result" -ne 0 ]; then
+	print_line
+   	   echo "Já existe uma chave SSH..."
+           cat $pubkey >> $authkey
+   	   echo "Copiando Chave SSH no arquivo $authkey..."
+	print_line
+        else
+	print_line
+   	  echo "A chave publica já está autorizada"
+	print_line
+        fi
+else
+	print_line
+   	echo "Ainda não há uma chave SSH..."
+   	echo "Criando nova chave SSH..."
+          ssh-keygen -f $privkey -P ""
+        echo "Copiando chave SSH no arquivo $authkey..."
+          cat $pubkey >> $authkey
+	print_line
+fi
 
 print_line
 echo  "               Ansible Instaldo"
@@ -58,6 +89,6 @@ case  $1 in
                 remove)
                     remove;;            
                 *)
-	      echo "escolha install ou remove"
-;;              
+	      echo "Escolha install ou remove"
+	;;              
 esac 
