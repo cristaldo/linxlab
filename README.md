@@ -13,7 +13,7 @@ com um apontamento a localhost.
 
 # Instruções
 
-1) Aplicar permissão de execução:
+1) Aplicar permissão de execução, se necessário:
 ``` 
 chmod +x start.sh
 ```
@@ -34,3 +34,4 @@ Após a execução do script start.sh, o playbook poderá ser executado:
 ansible-playbook site.yaml
 ```
 
+Acesse a aplicação através da URL: http://localhost
