@@ -4,6 +4,15 @@
 
   - name: Create nginx config file
     copy: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+  - name: Create directory for SSL
+    file: path=/etc/nginx/ssl state=directory
+
+  - name: Create SSL Certification files
+    copy: src=server.crt dest=/etc/nginx/ssl/server.crt
+
+  - name: Create SSL Certification files
+    copy: src=server.key dest=/etc/nginx/ssl/server.key
     notify: restart nginx
 
   - name: http service
