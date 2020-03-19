@@ -1,5 +1,5 @@
 ---
-- name: Instalacao e configuração das roles common, repos, node,  nginx e messages
+- name: Inicializacao da instalacao e configuração das roles common; repos; node; nginx e info.
   hosts: localhost
   connection: local
 
