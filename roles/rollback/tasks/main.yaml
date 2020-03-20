@@ -1,0 +1,25 @@
+---
+  - name: Remove Epel
+    yum: name=epel-release state=absent
+
+  - name: Remove Firewalld rules https
+    firewalld: service=https permanent=true state=disabled immediate=yes
+
+  - name: Remove Firewalld rules http
+    firewalld: service=http permanent=true state=disabled immediate=yes
+    notify: restart firewalld
+
+  - name: Remove NodeJS Repository
+    file: 
+      path: /etc/yum.repos.d/nodesource-el7.repo
+      state: absent
+
+  - name: Remove NodeJS GPG Key
+    file:
+      path: /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL
+      state: absent
+
+  - name: Remove NodeJS Directory
+    file:
+      path: /srv/www/nodejs
+      state: absent
