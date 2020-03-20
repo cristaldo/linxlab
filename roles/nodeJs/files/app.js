@@ -24,7 +24,7 @@ var cluster = require('cluster'), os = require('os');
  } else {
 
 	app.get('/', function (req, res) {
-		res.send('Hello World!');
+		res.send(' Hello World Lynx!\n');
 	});
 
 	app.listen(3000, function () {
