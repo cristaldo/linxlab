@@ -20,4 +20,3 @@
 
   - name: Configure SELinux to httpd
     seboolean: name=httpd_can_network_connect state=true persistent=yes
-    when: ansible_selinux.status == "enabled"
