@@ -9,3 +9,5 @@
     - nodeJs
     - nginx
     - info
+    - role: rollback
+      tags: [ never, rollback ]
