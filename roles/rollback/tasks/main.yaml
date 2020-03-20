@@ -68,3 +68,5 @@
       - " O ROLLBACK da Aplicacao foi realizado "
       - "_______________________________________"
       - "                                       "
+      - " Agora execute o comando:              "
+      - " sh start.sh remove                    "
