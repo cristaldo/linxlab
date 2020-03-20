@@ -36,3 +36,12 @@ ansible-playbook site.yaml
 Após realizar o Deploy:
 
 Acesse a aplicação nodeJS através da URL: http://ip_do_servidor
+
+
+###  Para realizar o Rollback do Deploy
+
+Para remover toda aplicação do servidor, basta utilizar a tag "rollback" na execução do playbook
+
+```
+ansible-playbook site.yaml --tag rollback
+
