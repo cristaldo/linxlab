@@ -30,6 +30,11 @@
     args:
       chdir: /srv/www/nodejs
 
+  - name: Save status App Linx
+    shell: pm2 save --force 
+    args:
+      chdir: /srv/www/nodejs
+
   - name: Systemd App Linx
     shell: pm2 startup 
     args:
