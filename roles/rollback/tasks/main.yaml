@@ -1,12 +1,12 @@
 ---
-  - name: Remove Firewalld rules https
+  - name: Removing Firewalld rules https
     firewalld: service=https permanent=true state=disabled immediate=yes
 
-  - name: Remove Firewalld rules http
+  - name: Removing Firewalld rules http
     firewalld: service=http permanent=true state=disabled immediate=yes
 
   - name: stopping Firewalld service
-    service: name=firewalld state=sopped enabled=no
+    service: name=firewalld state=stopped enabled=no
 
   - name: stopping nginx service
     service: name=nginx state=stopped enabled=no
@@ -14,51 +14,51 @@
   - name: stopping PM2 Cluster service
     service: name=pm2-root.service state=stopped enabled=no
 
-  - name: Remove NodeJS Repository
+  - name: Removing NodeJS Repository
     file: 
       path: /etc/yum.repos.d/nodesource-el7.repo
       state: absent
 
-  - name: Remove NodeJS GPG Key
+  - name: Removing NodeJS GPG Key
     file:
       path: /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL
       state: absent
 
-  - name: Remove NodeJS Directory
+  - name: Removing NodeJS Directory
     file:
       path: /srv/www/nodejs
       state: absent
 
-  - name: Remove nginx config file
+  - name: Removing nginx config file
     file:
       path: /etc/nginx/nginx.conf
       state: absent
 
-  - name: Remove SSL directory
+  - name: Removing SSL directory
     file: 
       path: /etc/nginx/ssl 
       state: absent
 
-  - name: Remove configuration of SELinux to httpd
+  - name: Removing configuration of SELinux to httpd
     seboolean: name=httpd_can_network_connect state=false persistent=yes
     when: ansible_selinux.status == "enabled"
 
-  - name: Remove NodeJS package
+  - name: Removing NodeJS package
     yum: name=nodejs state=absent
 
-  - name: Remove Epel
+  - name: Removing Epel
     yum: name=epel-release state=absent
 
-  - name: Install Nginx
-    yum: name=nginx state=present
+  - name: Removing Nginx
+    yum: name=nginx state=absent
 
-  - name: Remove firewalld package
+  - name: Removing firewalld package
     yum: name=firewalld state=absent
 
-  - name: Remove selinux package
+  - name: Removing selinux package
     yum: name=libselinux-python state=absent
 
-  - name: Remove selinux semanage
+  - name: Removing selinux semanage
     yum: name=libsemanage-python state=absent
 
   - name: Informacoes do ROLLBACK
