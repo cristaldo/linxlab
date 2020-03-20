@@ -22,16 +22,6 @@
       name: pm2
       global: yes
 
-#  - name: Copy TLS key
-#    copy: src=files/nginx.key dest={{ key_file }} owner=root mode=0600
-
-#  - name: Copy TLS certificate
-#    copy: src=files/nginx.crt dest={{ cert_file }} owner=root mode=0600
-
-#  - name: Copy Nginx config file
-#    template: src=templates/nginx.conf.j2 dest={{ conf_file }}
-
-
   - name: Create app config file
     copy: src=app.js dest=/srv/www/nodejs/app.js
 
