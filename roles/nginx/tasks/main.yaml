@@ -9,10 +9,10 @@
     file: path=/etc/nginx/ssl state=directory
 
   - name: Create SSL Certification files
-    copy: src=server.crt dest=/etc/nginx/ssl/server.crt
+    copy: src=server.crt dest=/etc/nginx/ssl/server.crt owner=root mode=0600
 
   - name: Create SSL Certification files
-    copy: src=server.key dest=/etc/nginx/ssl/server.key
+    copy: src=server.key dest=/etc/nginx/ssl/server.key owner=root mode=0600
     notify: restart nginx
 
   - name: http service
