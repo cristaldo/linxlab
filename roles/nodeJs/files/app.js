@@ -1,5 +1,6 @@
 
-//const cluster = require('cluster');
+// Aplicação sobe uma instância filho (worker) por processador. Caso um worker caia, ele sobre outro processo.
+
 var numCPUs = require('os').cpus().length;
 var http = require('http');
 var express = require('express');
