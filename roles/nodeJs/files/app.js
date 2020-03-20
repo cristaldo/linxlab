@@ -1,11 +1,14 @@
 
+//const cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
+var http = require('http');
 var express = require('express');
 var app = express();
 var cluster = require('cluster'), os = require('os');
 
    if (cluster.isMaster) {
-	var cpus = os.cpus().length;
-	for (var i = 0; i <= cpus; i++) {
+  	console.log('Master process is running');
+	for (let i = 0; i < numCPUs; i++) {
 		cluster.fork();
 		}
 
@@ -17,18 +20,19 @@ var cluster = require('cluster'), os = require('os');
 		console.log('Cluster %d esta desconectado.', worker.process.pid);
 	});
 
-	cluster.on('exit', function(worker) {
-		console.log('Cluster %d caiu fora.', worker.process.pid);
+	cluster.on('exit', (worker, code, signal) => {
+		console.log(`Worker ${worker.process.pid} caiu fora with code: ${code}, and signal: ${signal}`);
+    		console.log('Iniciando novo worker');
+    		cluster.fork();
 	});
 
  } else {
 
-	app.get('/', function (req, res) {
-		res.send(' Hello World Lynx!\n');
-	});
+ 	http.createServer((req, res) => {
+		res.writeHead(200);
+   		res.end(`Hello World Lynx ! I am the worker ${cluster.worker.id}\n`);
+        }).listen(3000);
 
-	app.listen(3000, function () {
-		console.log('Example app listening on port 3000!');
-	});
+	console.log('Example app listening on port 3000!');
 
 }
