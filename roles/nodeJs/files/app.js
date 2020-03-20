@@ -31,7 +31,7 @@ var cluster = require('cluster'), os = require('os');
 
  	http.createServer((req, res) => {
 		res.writeHead(200);
-   		res.end(`Hello World Lynx ! I am the worker ${cluster.worker.id}\n`);
+   		res.end(`Hello World Lynx ! I am the worker ${cluster.worker.id} of ${numCPUs} CPUs\n`);
         }).listen(3000);
 
 	console.log('Example app listening on port 3000!');
