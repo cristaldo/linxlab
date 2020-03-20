@@ -29,6 +29,11 @@
       path: /srv/www/nodejs
       state: absent
 
+  - name: Removing PM2 Directory
+    file:
+      path: /root/.pm2
+      state: absent
+
   - name: Removing nginx config file
     file:
       path: /etc/nginx/nginx.conf
