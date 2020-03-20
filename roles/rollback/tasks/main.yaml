@@ -1,13 +1,18 @@
 ---
-  - name: Remove Epel
-    yum: name=epel-release state=absent
-
   - name: Remove Firewalld rules https
     firewalld: service=https permanent=true state=disabled immediate=yes
 
   - name: Remove Firewalld rules http
     firewalld: service=http permanent=true state=disabled immediate=yes
-    notify: restart firewalld
+
+  - name: stopping Firewalld service
+    service: name=firewalld state=sopped enabled=no
+
+  - name: stopping nginx service
+    service: name=nginx state=stopped enabled=no
+
+  - name: stopping PM2 Cluster service
+    service: name=pm2-root.service state=stopped enabled=no
 
   - name: Remove NodeJS Repository
     file: 
@@ -23,3 +28,43 @@
     file:
       path: /srv/www/nodejs
       state: absent
+
+  - name: Remove nginx config file
+    file:
+      path: /etc/nginx/nginx.conf
+      state: absent
+
+  - name: Remove SSL directory
+    file: 
+      path: /etc/nginx/ssl 
+      state: absent
+
+  - name: Remove configuration of SELinux to httpd
+    seboolean: name=httpd_can_network_connect state=false persistent=yes
+    when: ansible_selinux.status == "enabled"
+
+  - name: Remove NodeJS package
+    yum: name=nodejs state=absent
+
+  - name: Remove Epel
+    yum: name=epel-release state=absent
+
+  - name: Install Nginx
+    yum: name=nginx state=present
+
+  - name: Remove firewalld package
+    yum: name=firewalld state=absent
+
+  - name: Remove selinux package
+    yum: name=libselinux-python state=absent
+
+  - name: Remove selinux semanage
+    yum: name=libsemanage-python state=absent
+
+  - name: Informacoes do ROLLBACK
+    debug:
+      msg: 
+      - "_______________________________________"
+      - " O ROLLBACK da Aplicacao foi realizado "
+      - "_______________________________________"
+      - "                                       "
