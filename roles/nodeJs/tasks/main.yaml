@@ -36,10 +36,10 @@
       chdir: /srv/www/nodejs
 
   - name: Systemd App Linx
-    shell: pm2 startup 
+    shell: pm2 startup --service-name linx 
     args:
       chdir: /srv/www/nodejs
 
-  - name: Service PM2 Cluster
-    service: name=pm2-linx.service state=started enabled=yes
+  - name: Service Linx pm2 Cluster
+    service: name=linx.service state=started enabled=yes
 
