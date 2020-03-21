@@ -2,10 +2,9 @@
 // Aplicação sobe uma instância filho (worker) por processador. Caso um worker caia, ele sobre outro processo.
 
 var numCPUs = require('os').cpus().length;
-var http = require('http');
+var cluster = require('cluster'), os = require('os');
 var express = require('express');
 var app = express();
-var cluster = require('cluster'), os = require('os');
 
    if (cluster.isMaster) {
   	console.log('Master process is running');
@@ -29,11 +28,12 @@ var cluster = require('cluster'), os = require('os');
 
  } else {
 
- 	http.createServer((req, res) => {
-		res.writeHead(200);
-   		res.end(`Hello World Lynx ! I am the worker ${cluster.worker.id} of ${numCPUs} CPUs\n`);
-        }).listen(3000);
+	app.get('/', function (req, res) {
+  		res.send(`Hello World Linx !!! Sou o worker ${cluster.worker.id} de ${numCPUs} CPUs\n`);
+		});
 
-	console.log('Example app listening on port 3000!');
+	app.listen(3000, function () {
+		console.log('Example app listening on port 3000!');
+		});
 
 }
