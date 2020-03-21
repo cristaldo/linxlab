@@ -15,8 +15,20 @@
     copy: src=server.key dest=/etc/nginx/ssl/server.key owner=root mode=0600
     notify: restart nginx
 
+  - name: Create monit file
+    copy: src=nginx.mon dest=/etc/monit.d/nginx.conf
+    notify: restart monit
+
   - name: http service
     service: name=nginx state=started enabled=yes
 
   - name: Configure SELinux to httpd
     seboolean: name=httpd_can_network_connect state=true persistent=yes
+
+  - name: Firewalld rules https
+    firewalld: service=https permanent=true state=enabled immediate=yes
+
+  - name: Firewalld rules http
+    firewalld: service=http permanent=true state=enabled immediate=yes
+    notify: restart firewalld
+
