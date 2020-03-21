@@ -11,8 +11,11 @@
   - name: stopping nginx service
     service: name=nginx state=stopped enabled=no
 
-  - name: stopping PM2 Cluster service
-    service: name=pm2-root.service state=stopped enabled=no
+  - name: stopping monit service
+    service: name=monit state=stopped enabled=no
+
+  - name: stopping Linx Cluster service
+    service: name=linx.service state=stopped enabled=no
 
   - name: Removing NodeJS Repository
     file: 
@@ -27,6 +30,11 @@
   - name: Removing NodeJS Directory
     file:
       path: /srv/www/nodejs
+      state: absent
+
+  - name: Removing Monit config file
+    file:
+      path: /etc/monit.d/nginx.mon
       state: absent
 
   - name: Removing PM2 Directory
