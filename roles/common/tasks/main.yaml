@@ -11,12 +11,11 @@
   - name: Install Epel
     yum: name=epel-release state=latest
 
+  - name: Install Monit
+    yum: name=monit state=latest
+
+  - name: Monit service
+    service: name=monit state=started enabled=yes
+
   - name: Firewalld service
     service: name=firewalld state=started enabled=yes
-
-  - name: Firewalld rules https
-    firewalld: service=https permanent=true state=enabled immediate=yes
-
-  - name: Firewalld rules http
-    firewalld: service=http permanent=true state=enabled immediate=yes
-    notify: restart firewalld
