@@ -26,7 +26,7 @@
     copy: src=app.js dest=/srv/www/nodejs/app.js
 
   - name: Start App Linx
-    shell: pm2 -f start app.js
+    shell: pm2 -f start app.js -n linx --watch --watch-delay 4
     args:
       chdir: /srv/www/nodejs
 
@@ -41,5 +41,5 @@
       chdir: /srv/www/nodejs
 
   - name: Service PM2 Cluster
-    service: name=pm2-root.service state=started enabled=yes
+    service: name=pm2-linx.service state=started enabled=yes
 
