@@ -7,7 +7,7 @@
       - "_______________________________________"
       - "                                       "
       - "                                       "
-      - "systemctl status pm2-root.service"
+      - "systemctl status linx.service"
       - "                                       "
       - "Diretorio da aplicacao /srv/www/nodejs"
       - "                                       "
