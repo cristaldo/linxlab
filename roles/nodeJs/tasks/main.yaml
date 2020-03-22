@@ -40,6 +40,10 @@
     args:
       chdir: /srv/www/nodejs
 
+  - name: Create linx monit file
+    copy: src=linx.mon dest=/etc/monit.d/linx.conf
+    notify: restart monit
+
   - name: Service Linx pm2 Cluster
     service: name=linx.service state=started enabled=yes
 
