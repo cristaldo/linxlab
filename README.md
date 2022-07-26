@@ -2,12 +2,12 @@ The Linx Lab Repository
 =========================
 
 ## 
-Módulo de Deploy de nodejs application + Nginx com Ansible
+Módulo para Deploy do nodejs application server + Nginx, utilizando-se Ansible.
 
-Utilizado módulo PM2 para cluster da aplicação, assim como para balanceamento de carga entre
-os processos nodejs e assim como também para autostart do serviço node caso seja interrompido
+-- Utilizado módulo PM2 para gerenciar o cluster da aplicação, assim como para realizar o balanceamento de
+carga entre os processos nodejs, assim como para realizar autostart dos serviços node caso sejam interrompidos.
 
-Utilizado monit para monitoramento do serviço nginx e autostart em caso de falhas
+-- Utilizado monit para monitoramento do serviço nginx e autostart em caso de falhas.
 
 ## ** Script de inicialização **
 
